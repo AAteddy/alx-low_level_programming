@@ -1,6 +1,7 @@
 #include <stdio.h>
 /**
   * main - built-in function
+  * void - no return value
   * return - zero if it is success
 */
 int main(void)
