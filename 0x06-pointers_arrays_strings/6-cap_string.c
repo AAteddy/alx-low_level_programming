@@ -1,38 +1,38 @@
 #include "main.h"
 /**
- * _indexOf - returns boolean if special  character
- * @a: character to return
- * Return: true or false
+ * cap_string - capitalize all words of a string
+ * @str: string
+ * Return: `str`
  */
-int _indexOf(char a)
+
+char *cap_string(char *str)
 {
-	int i;
-	char capArr[13] = {'\n', '\t', ' ', '.', ',', ';', ',', '!', '?', '(',
-')', '{', '}'};
+	int i, c;
+	int trigger;
+	char nots[] = ",;.!?(){}\n\t\" ";
 
-	for (i = 0; i < 13; i++)
+	for (i = 0, trigger = 0; str[i] != '\0'; i++)
 	{
-		if (capArr[i] == a)
-			return (1);
-	}
-	return (0);
-}
-/**
- * cap_string - capitalizes the string
- * @s: string
- * Return: the string capitalized
- */
-char *cap_string(char *s)
-{
-	int i;
+		if (str[0] > 96 && str[0] < 123)
+			trigger = 1;
+		for (c = 0; nots[c] != '\0'; c++)
+		{
+			if (nots[c] == str[i])
+				trigger = 1;
+		}
 
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		if (_indexOf(s[i]))
-			continue;
-i		if (s[i] >= 'a' && s[i] <= 'z' && (_indexOf(s[i - 1]) || i == 0))
-			s[i] = s[i] - 32;
-
+		if (trigger)
+		{
+			if (str[i] > 96 && str[i] < 123)
+			{
+				str[i] -= 32;
+				trigger = 0;
+			}
+			else if (str[i] > 64 && str[i] < 91)
+				trigger = 0;
+			else if (str[i] > 47 && str[i] < 58)
+				trigger = 0;
+		}
 	}
-	return (s);
+	return (str);
 }
