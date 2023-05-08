@@ -2,16 +2,16 @@
 #include <stdio.h>
 #include "main.h"
 
-char *create_buff(char *filename);
-void close_file(int fd);
+char *creat_buff(char *filename);
+void file_close(int fd);
 
 /**
-  * create_buff - a function that allocates 1024 bytes for a buffer
+  * creat_buff - a function that allocates 1024 bytes for a buffer
   * @filename: name of the file buffer used in storing chars
   *
   * Return: a pointer to the newly allocated buffer
   */
-char *create_buff(char *filename)
+char *creat_buff(char *filename)
 {
 	char *buffer;
 
@@ -27,10 +27,10 @@ char *create_buff(char *filename)
 }
 
 /**
-  * close_file - closes the file discriptor
+  * file_close - closes the file discriptor
   * @fd: the file descriptor to be closed
   */
-void close_file(int fd)
+void file_close(int fd)
 {
 	int cls;
 
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	buffer = create_buff(argv[2]);
+	buffer = creat_buff(argv[2]);
 	src = open(argv[1], O_RDONLY);
 	rd = read(src, buffer, 1024);
 	dest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
@@ -94,8 +94,8 @@ int main(int argc, char *argv[])
 	} while (rd > 0);
 
 	free(buffer);
-	close_file(src);
-	close_file(dest);
+	file_close(src);
+	file_close(dest);
 
 	return (0);
 }
