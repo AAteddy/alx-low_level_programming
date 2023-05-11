@@ -310,7 +310,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	data_elf(file->elf);
 	version_elf(file->elf);
 	osabi_elf(file->elf);
-	abi_elf(file->elf;
+	abi_elf(file->elf);
 	type_elf(file->elf_type, file->elf);
 	entry_elf(file->elf_entry, file->elf);
 
