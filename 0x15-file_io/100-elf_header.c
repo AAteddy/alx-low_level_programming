@@ -305,7 +305,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	print_version(file->e_ident);
 	print_osabi(file->e_ident);
 	print_abi(file->e_ident);
-	print_type(file->e_type, file>e_ident);
+	print_type(file->e_type, file->e_ident);
 	print_entry(file->e_entry, file->e_ident);
 
 	free(file);
