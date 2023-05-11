@@ -14,9 +14,8 @@
   */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int opn, wrt;
-	int len = 0;
-
+	int opn, wrt, length = 0;
+	
 	if (filename == NULL)
 	{
 		return (-1);
@@ -24,14 +23,14 @@ int append_text_to_file(const char *filename, char *text_content)
 
 	if (text_content != NULL)
 	{
-		for (len = 0; text_content[len];)
+		for (length = 0; text_content[length];)
 		{
-			len++;
+			length++;
 		}
 	}
 
 	opn = open(filename, O_WRONLY | O_APPEND);
-	wrt = write(opn, text_content, len);
+	wrt = write(opn, text_content, length);
 
 	if (opn == -1 || wrt == -1)
 	{
@@ -40,5 +39,5 @@ int append_text_to_file(const char *filename, char *text_content)
 
 	close(opn);
 
-	return (-1);
+	return (1);
 }
