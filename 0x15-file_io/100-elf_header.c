@@ -57,9 +57,13 @@ void print_magic(unsigned char *e_ident)
 		printf("%02x", e_ident[index]);
 
 		if (index == EI_NIDENT - 1)
+		{
 			printf("\n");
+		}
 		else
+		{
 			printf(" ");
+		}
 	}
 }
 
@@ -117,8 +121,7 @@ void print_data(unsigned char *e_ident)
  */
 void print_version(unsigned char *e_ident)
 {
-	printf("  Version:                           %d",
-	       e_ident[EI_VERSION]);
+	printf("  Version:                           %d", e_ident[EI_VERSION]);
 
 	switch (e_ident[EI_VERSION])
 	{
@@ -182,8 +185,7 @@ void print_osabi(unsigned char *e_ident)
  */
 void print_abi(unsigned char *e_ident)
 {
-	printf("  ABI Version:                       %d\n",
-	       e_ident[EI_ABIVERSION]);
+	printf("  ABI Version:                       %d\n", e_ident[EI_ABIVERSION]);
 }
 
 /**
@@ -194,7 +196,9 @@ void print_abi(unsigned char *e_ident)
 void print_type(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	{
 		e_type >>= 8;
+	}
 
 	printf("  Type:                              ");
 
@@ -237,10 +241,14 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 	}
 
 	if (e_ident[EI_CLASS] == ELFCLASS32)
+	{
 		printf("%#x\n", (unsigned int)e_entry);
+	}
 
 	else
+	{
 		printf("%#lx\n", e_entry);
+	}
 }
 
 /**
@@ -253,8 +261,7 @@ void close_elf(int elf)
 {
 	if (close(elf) == -1)
 	{
-		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d\n", elf);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", elf);
 		exit(98);
 	}
 }
