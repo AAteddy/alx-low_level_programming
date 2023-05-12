@@ -261,13 +261,13 @@ void close_elf(int elf)
 {
 	if (close(elf) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", elf);
+		dprintf(STDERR_FILENO, "Error: Couldn't close fd %d\n", elf);
 		exit(98);
 	}
 }
 
 /**
- * main - Displays the information contained in the
+ * main - a function that displays the information contained in the
  *        ELF header at the start of an ELF file.
  * @argc: The number of arguments supplied to the program.
  * @argv: An array of pointers to the arguments.
@@ -285,14 +285,14 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	opn = open(argv[1], O_RDONLY);
 	if (opn == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Couldn't read file %s\n", argv[1]);
 		exit(98);
 	}
 	file = malloc(sizeof(Elf64_Ehdr));
 	if (file == NULL)
 	{
 		close_elf(opn);
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Couldn't read file %s\n", argv[1]);
 		exit(98);
 	}
 	rd = read(opn, file, sizeof(Elf64_Ehdr));
@@ -300,12 +300,12 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	{
 		free(file);
 		close_elf(opn);
-		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: `%s`: There is no such file\n", argv[1]);
 		exit(98);
 	}
 
 	verfy_elf(file->e_ident);
-	printf("ELF Header:\n");
+	printf("ELF File Header:\n");
 	print_magic(file->e_ident);
 	print_class(file->e_ident);
 	print_data(file->e_ident);
