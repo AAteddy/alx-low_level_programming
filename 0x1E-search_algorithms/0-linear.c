@@ -1,8 +1,3 @@
-/*
- * File: 0-linear.c
- * Auth: Tedros Alem Asfaha
- */
-
 #include "search_algos.h"
 
 /**
